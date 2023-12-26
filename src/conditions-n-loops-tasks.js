@@ -73,7 +73,7 @@ function canQueenCaptureKing(queen, king) {
   );
 }
 
-// console.log(canQueenCaptureKing({ x: 3, y: 4 }, { x: 5, y: 4 }));
+//! 4
 /**
  * Determines whether a triangle is isosceles based on its side lengths.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -92,10 +92,11 @@ function canQueenCaptureKing(queen, king) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  return a + b + c > 2 * Math.max(a, b, c) && (a === b || a === c || b === c);
 }
 
+//! 5
 /**
  * Converts a number to Roman numerals. The number will be between 1 and 39.
  * In this task, the use of methods of the String and Array classes is not allowed.
