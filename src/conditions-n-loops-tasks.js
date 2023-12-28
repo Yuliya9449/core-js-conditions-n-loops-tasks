@@ -461,10 +461,54 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr, leftIndex = 0, rightIndex = arr.length - 1) {
+  function partition(array, leftInd, rightInd) {
+    let leftIdx = leftInd;
+    let rightIdx = rightInd;
+    const pivotValue = array[Math.floor((rightIdx + leftIdx) / 2)];
+    const mutableArray = array;
+
+    while (leftIdx <= rightIdx) {
+      while (mutableArray[leftIdx] < pivotValue) {
+        leftIdx += 1;
+      }
+
+      while (mutableArray[rightIdx] > pivotValue) {
+        rightIdx -= 1;
+      }
+
+      if (leftIdx <= rightIdx) {
+        [mutableArray[leftIdx], mutableArray[rightIdx]] = [
+          mutableArray[rightIdx],
+          mutableArray[leftIdx],
+        ];
+
+        leftIdx += 1;
+        rightIdx -= 1;
+      }
+    }
+
+    return leftIdx;
+  }
+
+  if (arr.length < 2) {
+    return arr;
+  }
+
+  const pivotIndex = partition(arr, leftIndex, rightIndex);
+
+  if (leftIndex < pivotIndex - 1) {
+    sortByAsc(arr, leftIndex, pivotIndex - 1);
+  }
+
+  if (pivotIndex < rightIndex) {
+    sortByAsc(arr, pivotIndex, rightIndex);
+  }
+
+  return arr;
 }
 
+//! 14
 /**
  * Shuffles characters in a string so that the characters with an odd index are moved to the end of the string at each iteration.
  * Take into account that the string can be very long and the number of iterations is large. Consider how you can optimize your solution.
