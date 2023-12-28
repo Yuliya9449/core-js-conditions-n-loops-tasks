@@ -329,16 +329,21 @@ function isContainNumber(num, digit) {
  */
 
 function getBalanceIndex(arr) {
-  function getSum(minIdx, maxIdx) {
-    let sum = 0;
-    for (let i = minIdx; i <= maxIdx; i += 1) {
-      sum += arr[i];
-    }
-    return sum;
+  let arrSumWithoutFirst = 0;
+
+  for (let i = 1; i < arr.length; i += 1) {
+    arrSumWithoutFirst += arr[i];
   }
 
-  for (let i = 1; i < arr.length - 1; i += 1) {
-    if (getSum(0, i - 1) === getSum(i + 1, arr.length - 1)) {
+  for (
+    let i = 1, leftSum = 0, rightSum = arrSumWithoutFirst;
+    i < arr.length - 1;
+    i += 1
+  ) {
+    leftSum += arr[i - 1];
+    rightSum -= arr[i];
+
+    if (leftSum === rightSum) {
       return i;
     }
   }
