@@ -582,7 +582,7 @@ function shuffleChar(string, iterations) {
  */
 //! ужасное решение, если придумаю как переделать, то надо переделать
 function getNearestBigger(number) {
-  const string = String(number);
+  const string = String(number);;
 
   const arr = [];
 
